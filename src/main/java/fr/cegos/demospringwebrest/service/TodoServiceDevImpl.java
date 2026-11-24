@@ -1,8 +1,10 @@
 package fr.cegos.demospringwebrest.service;
 
 import fr.cegos.demospringwebrest.bo.Todo;
+import fr.cegos.demospringwebrest.exception.BusinessException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +20,9 @@ public class TodoServiceDevImpl implements TodoService {
      * On crée 2 taches au démarrage du service
      */
     public TodoServiceDevImpl() {
-        listeTodo.add(new Todo(1L, "faire les courses"));
-        listeTodo.add(new Todo(2L, "suivre cours "));
-        listeTodo.add(new Todo(3L, "faire devoirs "));
+        listeTodo.add(new Todo(1L, "faire les courses", LocalDate.of(2026,12,12)));
+        listeTodo.add(new Todo(2L, "suivre cours ", LocalDate.of(2026,10,12)));
+        listeTodo.add(new Todo(3L, "faire devoirs ", LocalDate.of(2027,1,2)));
     }
 
     /**
@@ -33,6 +35,11 @@ public class TodoServiceDevImpl implements TodoService {
 
     @Override
     public Todo addTodo(Todo todo) {
+        // validation métier
+        if (listeTodo.size() == 5){
+            throw new BusinessException("vous avez déjà 5 tâches en cours veuillez les traiter avant d'en ajouter une autre");
+        }
+
         todo.setId(listeTodo.getLast().getId() + 1);
         listeTodo.add(todo);
         return todo;

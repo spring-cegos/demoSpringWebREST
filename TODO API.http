@@ -1,11 +1,17 @@
 ### On récupère la liste des tâches
 GET http://localhost:8080/todo
 
-### On crée une tâche
+### On crée une tâche trop longue et dans le passé (cas d'erreur)
 POST http://localhost:8080/todo
 Content-Type: application/json
 
-{ "name" : "nouvelle tâche"}
+{ "name" : "nouvelle tâche trop longue", "dueDate": "2026-01-01"}
+
+### On crée une tâche (cas nominal)
+POST http://localhost:8080/todo
+Content-Type: application/json
+
+{ "name" : "nouvelle tâche", "dueDate": "2027-01-01"}
 
 
 ### On modifie la tâche d'id : 2
