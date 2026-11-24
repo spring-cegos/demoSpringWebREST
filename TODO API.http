@@ -1,0 +1,24 @@
+### On récupère la liste des tâches
+GET http://localhost:8080/todo
+
+### On crée une tâche
+POST http://localhost:8080/todo
+Content-Type: application/json
+
+{ "name" : "nouvelle tâche"}
+
+
+### On modifie la tâche d'id : 2
+PUT http://localhost:8080/todo/2
+Content-Type: application/json
+
+{ "name" : "tâche modifiée"}
+
+### On supprime la tâche d'id : 2
+DELETE http://localhost:8080/todo/2
+
+### On recupère la tâche d'id : 3
+GET http://localhost:8080/todo/3
+
+### On recupère les tâches contenant : "faire"
+GET http://localhost:8080/todo?termeRecherche=faire
